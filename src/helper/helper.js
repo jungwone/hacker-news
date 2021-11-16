@@ -10,6 +10,17 @@ export function getCategoryFromSearchParam(search) {
   return category;
 }
 
+export function getPageNumerFromSearchParam(search) {
+  const params = new URLSearchParams(search);
+  const page = Number(params.get("page") || 1);
+  return page;
+}
 
-  return search.slice(index + 1);
+export function getDateUsingTimeStamp(timestamp) {
+  const date = new Date(timestamp * 1000);
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const day = date.getDay();
+
+  return ` ${year.toString()}-${month.toString()}-${day.toString()}`;
 }

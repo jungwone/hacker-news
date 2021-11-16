@@ -1,24 +1,44 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Pagination from "../../components/pagination/Pagination";
-import { getCategoryFromSearchParam } from "../../helper/helper";
+import PostList from "../../components/post_list/PostList";
+import {
+  getCategoryFromSearchParam,
+  getPageNumerFromSearchParam,
+} from "../../helper/helper";
 import { getPostsByCategory } from "../../service/hacker_news";
+import styled from "@emotion/styled";
+
+const POSTS_PER_PAGE = 20;
 
 const Stories = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+
   const [posts, setPosts] = useState([]);
+  const category = getCategoryFromSearchParam(location.search);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    // TODO: 알맞은 카테고리 데이터 불러오기
-    const category = getCategoryFromSearchParam(location.search);
     getPostsByCategory(category).then((posts) => {
+      posts.sort((a, b) => b - a);
       setPosts(posts);
     });
+  }, [category]);
+
+  useEffect(() => {
+    const page = getPageNumerFromSearchParam(location.search);
+    setCurrentPage(page);
   }, [location]);
 
   return (
     <StoriesPage>
+      <PostList
+        posts={posts.slice(
+          (currentPage - 1) * POSTS_PER_PAGE,
+          currentPage * POSTS_PER_PAGE
+        )}
+      />
       <Pagination
         totalCount={posts.length}
         currentPage={currentPage}
@@ -39,6 +59,7 @@ const Stories = () => {
 };
 
 export default Stories;
+
 const StoriesPage = styled.main`
   padding-bottom: 80px;
 `;

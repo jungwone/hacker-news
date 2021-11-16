@@ -1,11 +1,9 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
-import TopStories from "./pages/top_stories/TopStories";
-import Stories from "./pages/Stories/Stories";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Stories from "./pages/stories/Stories";
 import Header from "./components/header/Header";
 import Categories from "./components/categories/Categories";
+import { getCategoryFromSearchParam } from "./helper/helper";
 
 function App() {
   const location = useLocation();
