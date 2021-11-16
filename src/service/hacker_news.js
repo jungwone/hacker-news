@@ -13,3 +13,12 @@ export async function getPostsByCategory(category) {
     console.log("error occured");
   }
 }
+
+export async function getPostInfo(id) {
+  try {
+    const response = await api.get(`item/${id}.json?print=pretty`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}

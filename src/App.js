@@ -4,19 +4,19 @@ import Stories from "./pages/stories/Stories";
 import Header from "./components/header/Header";
 import Categories from "./components/categories/Categories";
 import { getCategoryFromSearchParam } from "./helper/helper";
+import Post from "./pages/post/Post";
 
 function App() {
   const location = useLocation();
   return (
     <div className="App">
       <Header />
-      <Categories />
       <Categories
         currentCategory={getCategoryFromSearchParam(location.search)}
       />
       <Routes>
         <Route path="/stories" element={<Stories />} />
-        <Route path="/topstories" element={<TopStories />} />
+        <Route path="/post/:id" element={<Post />} />
       </Routes>
     </div>
   );
