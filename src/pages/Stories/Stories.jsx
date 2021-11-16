@@ -18,13 +18,14 @@ const Stories = () => {
   }, [location]);
 
   return (
-    <div>
-      <span>welcome to this story</span>
+    <StoriesPage>
       <Pagination
         totalCount={posts.length}
         currentPage={currentPage}
+        postsPerPage={POSTS_PER_PAGE}
         onClickPage={(page) => {
           setCurrentPage(page);
+          navigate(`/stories?category=${category}&page=${page}`);
         }}
         onClickPrevPage={() => {
           setCurrentPage((prev) => prev - 1);
@@ -33,8 +34,11 @@ const Stories = () => {
           setCurrentPage((prev) => prev + 1);
         }}
       />
-    </div>
+    </StoriesPage>
   );
 };
 
 export default Stories;
+const StoriesPage = styled.main`
+  padding-bottom: 80px;
+`;

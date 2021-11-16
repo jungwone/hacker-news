@@ -56,6 +56,7 @@ const Pagination = ({
           {page}
         </PageButton>
       ))}
+
       {totalPage > currentPage && (
         <PageButton
           onClick={() => {
@@ -75,10 +76,10 @@ const Pagination = ({
 export default Pagination;
 
 const PaginationWrapper = styled.div`
-  max-width: 400px;
+  max-width: 460px;
   display: flex;
   justify-content: center;
-  margin: auto;
+  margin: 20px auto 0 auto;
 `;
 
 const PageButton = styled.button`

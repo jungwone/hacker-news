@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 
-const CategoryList = {
+export const CategoryList = {
   topstories: "topstories",
   newstories: "newstories",
   askstories: "askstories",
@@ -10,20 +10,20 @@ const CategoryList = {
   jobstories: "jobstories",
 };
 
-const Categories = () => {
+Object.freeze(CategoryList);
+
+const Categories = ({ currentCategory }) => {
   return (
-    <div>
-      <List>
-        <Category>
-          <Link to={`/`}>Home</Link>
+    <List>
+      <Category>
+        <Link to={`/`}>Home</Link>
+      </Category>
+      {Object.values(CategoryList).map((category) => (
+        <Category key={category} active={currentCategory === category}>
+          <Link to={`/stories?category=${category}`}>{category}</Link>
         </Category>
-        {Object.values(CategoryList).map((category) => (
-          <Category key={category}>
-            <Link to={`/stories?category=${category}`}>{category}</Link>
-          </Category>
-        ))}
-      </List>
-    </div>
+      ))}
+    </List>
   );
 };
 
@@ -40,7 +40,7 @@ const List = styled.ul`
 const Category = styled.li`
   a {
     text-decoration: none;
-    color: #8c3030;
+    color: ${(props) => (props.active ? "#d95252" : "#8c3030")};
     font-weight: bold;
     &:hover {
       color: #d95252;
