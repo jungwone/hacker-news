@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { useParams } from "react-router";
-import { getPostInfo } from "../../service/hacker_news";
+import { getPostInfo } from "../../api/hacker_news";
 import { getDateUsingTimeStamp } from "../../helper/helper";
 
 const Post = () => {

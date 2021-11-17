@@ -6,7 +6,7 @@ import {
   getCategoryFromSearchParam,
   getPageNumerFromSearchParam,
 } from "../../helper/helper";
-import { getPostsByCategory } from "../../service/hacker_news";
+import { getPostsByCategory } from "../../api/hacker_news";
 import styled from "@emotion/styled";
 
 const POSTS_PER_PAGE = 20;
